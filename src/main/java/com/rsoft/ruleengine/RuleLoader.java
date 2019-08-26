@@ -1,5 +1,10 @@
 package com.rsoft.ruleengine;
 
+import com.rsoft.ruleengine.model.RuleInfo;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * 规则加载器.
  * 
@@ -7,7 +12,7 @@ package com.rsoft.ruleengine;
  *
  */
 public interface RuleLoader {
-    public void reloadScene(String scene);
+    public List<RuleInfo> reloadScene(String scene);
 
-    public void reload();
+    public Map<String, List<RuleInfo>> reload();
 }

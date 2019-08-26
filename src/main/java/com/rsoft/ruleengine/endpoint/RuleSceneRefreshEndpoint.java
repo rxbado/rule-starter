@@ -4,11 +4,11 @@ import com.rsoft.ruleengine.RuleLoader;
 import com.rsoft.ruleengine.model.RuleInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
+import org.springframework.boot.actuate.endpoint.annotation.Selector;
+import org.springframework.boot.actuate.endpoint.web.annotation.WebEndpoint;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 自定义刷新端点.
@@ -16,20 +16,10 @@ import java.util.Map;
  * @author rsoft
  *
  */
-@Endpoint(id = "rules")
-public class RuleRefreshEndpoint {
+@WebEndpoint(id = "rules-scene")
+public class RuleSceneRefreshEndpoint {
     @Autowired
     private RuleLoader ruleLoader;
-
-    /**
-     * 刷新全部规则.
-     * 
-     * @return
-     */
-    @ReadOperation
-    public Map<String, List<RuleInfo>> reload() {
-        return ruleLoader.reload();
-    }
 
     /**
      * 刷新特定规则.
@@ -37,7 +27,9 @@ public class RuleRefreshEndpoint {
      * @param scene
      *            指定场景.
      * @return
-     *//*
-       * @ReadOperation public List<RuleInfo> reloadScene(String scene) { return ruleLoader.reloadScene(scene); }
-       */
+     */
+    @ReadOperation
+    public List<RuleInfo> reloadScene(@Selector String scene) {
+        return ruleLoader.reloadScene(scene);
+    }
 }

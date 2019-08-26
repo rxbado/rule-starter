@@ -28,21 +28,25 @@ public abstract class AbstractRuleLoader implements RuleLoader, CommandLineRunne
     /**
      * 刷新所有规则.
      */
-    public void reload() {
+    public Map<String, List<RuleInfo>> reload() {
         Map<String, List<RuleInfo>> rules = ruleSetService.getRuleSetAsMap();
         for (Map.Entry<String, List<RuleInfo>> entry : rules.entrySet()) {
             String scene = entry.getKey();
             reload(scene, entry.getValue());
         }
+
+        return rules;
     }
 
     /**
      * 刷新特定场景规则.
      */
-    public void reloadScene(String scene) {
+    public List<RuleInfo> reloadScene(String scene) {
         List<RuleInfo> ruleInfos = ruleSetService.getRuleSetByScene(scene);
         reload(scene, ruleInfos);
         System.out.println("reload success");
+
+        return ruleInfos;
     }
 
 }

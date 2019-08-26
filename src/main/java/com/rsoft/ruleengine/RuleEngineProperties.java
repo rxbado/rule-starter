@@ -21,4 +21,6 @@ public class RuleEngineProperties {
         private String refreshEndpoint;
     }
 
+    private String endpointsWebExposureInclude;
+
 }

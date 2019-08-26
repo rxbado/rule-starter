@@ -1,7 +1,6 @@
 package com.rsoft.ruleengine.drools;
 
 import com.rsoft.ruleengine.AbstractRuleLoader;
-import com.rsoft.ruleengine.RuleLoader;
 import com.rsoft.ruleengine.model.RuleInfo;
 
 import org.kie.api.KieServices;
@@ -14,7 +13,6 @@ import org.kie.api.builder.model.KieModuleModel;
 import org.kie.api.runtime.KieContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -27,7 +25,7 @@ import java.util.concurrent.ConcurrentMap;
  * @author rsoft
  *
  */
-public class DroolsFileSystemRuleLoader extends AbstractRuleLoader implements RuleLoader, CommandLineRunner {
+public class DroolsFileSystemRuleLoader extends AbstractRuleLoader {
     private static final String DROOLS_DRL_FILEPATH = "src/main/resources/rules/scene/{0}/rule_{1}.drl";
     private static final String PACKAGE_PREFIX_FORMAT = "rules.scene.{0}";
     private static final String SESSION_PREFIX_FORMAT = "ks_%s";
