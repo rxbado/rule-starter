@@ -1,7 +1,5 @@
 package com.rsoft.ruleengine;
 
-import com.rsoft.ruleengine.model.RuleInfo;
-
 import java.util.List;
 import java.util.Map;
 

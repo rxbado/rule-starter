@@ -1,8 +1,8 @@
-package com.rsoft.ruleengine.drools;
+package com.rsoft.ruleengine.impl.drools;
 
-import com.rsoft.ruleengine.AbstractRuleLoader;
+import com.rsoft.ruleengine.RuleInfo;
 import com.rsoft.ruleengine.RuleLoader;
-import com.rsoft.ruleengine.model.RuleInfo;
+import com.rsoft.ruleengine.impl.AbstractRuleLoader;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;

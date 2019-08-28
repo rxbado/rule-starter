@@ -1,6 +1,7 @@
-package com.rsoft.ruleengine;
+package com.rsoft.ruleengine.impl;
 
-import com.rsoft.ruleengine.model.RuleInfo;
+import com.rsoft.ruleengine.RuleInfo;
+import com.rsoft.ruleengine.RuleSetSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;

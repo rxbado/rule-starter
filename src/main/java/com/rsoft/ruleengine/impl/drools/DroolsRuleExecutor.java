@@ -1,7 +1,6 @@
-package com.rsoft.ruleengine.drools;
+package com.rsoft.ruleengine.impl.drools;
 
 import com.rsoft.ruleengine.RuleExecutor;
-import com.rsoft.ruleengine.drools.util.KieSessionHolder;
 
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;

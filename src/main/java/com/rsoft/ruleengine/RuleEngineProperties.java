@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * 规则引擎配置.
  * 
  * @author rsoft
- *
  */
 @ConfigurationProperties("ruleengine")
 public class RuleEngineProperties {

@@ -1,7 +1,7 @@
 package com.rsoft.ruleengine.endpoint;
 
+import com.rsoft.ruleengine.RuleInfo;
 import com.rsoft.ruleengine.RuleLoader;
-import com.rsoft.ruleengine.model.RuleInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;

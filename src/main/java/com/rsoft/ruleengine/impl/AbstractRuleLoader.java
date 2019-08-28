@@ -1,6 +1,8 @@
-package com.rsoft.ruleengine;
+package com.rsoft.ruleengine.impl;
 
-import com.rsoft.ruleengine.model.RuleInfo;
+import com.rsoft.ruleengine.RuleInfo;
+import com.rsoft.ruleengine.RuleLoader;
+import com.rsoft.ruleengine.RuleSetSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

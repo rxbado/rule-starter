@@ -1,4 +1,4 @@
-package com.rsoft.ruleengine.model;
+package com.rsoft.ruleengine;
 
 import lombok.Data;
 import lombok.ToString;
