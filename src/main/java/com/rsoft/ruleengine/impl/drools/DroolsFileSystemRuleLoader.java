@@ -28,25 +28,25 @@ import java.util.concurrent.ConcurrentMap;
 public class DroolsFileSystemRuleLoader extends AbstractRuleLoader {
     private static final String DROOLS_DRL_FILEPATH = "src/main/resources/rules/scene/{0}/rule_{1}.drl";
     private static final String PACKAGE_PREFIX_FORMAT = "rules.scene.{0}";
-    private static final String SESSION_PREFIX_FORMAT = "ks_%s";
-    private static final String BASE_PREFIX_FORMAT = "kb_%s";
-    private static final String CONTAINER_PREFIX_FORMAT = "kc_%s";
+    private static final String KSESSION_PREFIX_FORMAT = "ks_%s";
+    private static final String KBASE_PREFIX_FORMAT = "kb_%s";
+    private static final String KCONTAINER_PREFIX_FORMAT = "kc_%s";
 
     private static final Logger logger = LoggerFactory.getLogger(DroolsFileSystemRuleLoader.class);
     private final ConcurrentMap<String, KieContainer> kieContainers = new ConcurrentHashMap<>();
 
     public KieContainer getKieContainerByScene(String scene) {
-        return kieContainers.get(String.format(CONTAINER_PREFIX_FORMAT, scene));
+        return kieContainers.get(String.format(KCONTAINER_PREFIX_FORMAT, scene));
     }
 
     @Override
     public void reload(String scene, List<RuleInfo> rules) {
         KieServices kieServices = KieServices.Factory.get();
         KieModuleModel kmm = kieServices.newKieModuleModel();
-        KieBaseModel kbm = kmm.newKieBaseModel(String.format(BASE_PREFIX_FORMAT, scene));
+        KieBaseModel kbm = kmm.newKieBaseModel(String.format(KBASE_PREFIX_FORMAT, scene));
         kbm.setDefault(true);
         kbm.addPackage(MessageFormat.format(PACKAGE_PREFIX_FORMAT, scene));
-        kbm.newKieSessionModel(String.format(SESSION_PREFIX_FORMAT, scene));
+        kbm.newKieSessionModel(String.format(KSESSION_PREFIX_FORMAT, scene));
 
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
         for (RuleInfo ruleInfo : rules) {
@@ -63,7 +63,7 @@ public class DroolsFileSystemRuleLoader extends AbstractRuleLoader {
         }
 
         KieContainer kieContainer = kieServices.newKieContainer(kieServices.getRepository().getDefaultReleaseId());
-        kieContainers.put(String.format(CONTAINER_PREFIX_FORMAT, scene), kieContainer);
+        kieContainers.put(String.format(KCONTAINER_PREFIX_FORMAT, scene), kieContainer);
     }
 
 }

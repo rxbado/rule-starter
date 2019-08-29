@@ -1,7 +1,7 @@
 package com.rsoft.ruleengine.impl;
 
 import com.rsoft.ruleengine.RuleInfo;
-import com.rsoft.ruleengine.RuleSetSource;
+import com.rsoft.ruleengine.RuleSetProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.Map;
  * @author rsoft
  *
  */
-public class NullRuleSetSource implements RuleSetSource {
+public class NullRuleSetProvider implements RuleSetProvider {
 
     @Override
     public List<RuleInfo> getRuleSetByScene(String scene) {

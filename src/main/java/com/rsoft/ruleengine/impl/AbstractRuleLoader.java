@@ -2,7 +2,7 @@ package com.rsoft.ruleengine.impl;
 
 import com.rsoft.ruleengine.RuleInfo;
 import com.rsoft.ruleengine.RuleLoader;
-import com.rsoft.ruleengine.RuleSetSource;
+import com.rsoft.ruleengine.RuleSetProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,14 +18,14 @@ import java.util.Map;
  */
 public abstract class AbstractRuleLoader implements RuleLoader, CommandLineRunner {
     @Autowired
-    private RuleSetSource ruleSetService;
+    private RuleSetProvider ruleSetService;
 
     @Override
     public void run(String... args) throws Exception {
         reload();
     }
 
-    public abstract void reload(String sceneId, List<RuleInfo> rules);
+    public abstract void reload(String scene, List<RuleInfo> rules);
 
     /**
      * 刷新所有规则.

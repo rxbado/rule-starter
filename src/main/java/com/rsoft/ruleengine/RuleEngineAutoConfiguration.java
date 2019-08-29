@@ -2,7 +2,7 @@ package com.rsoft.ruleengine;
 
 import com.rsoft.ruleengine.endpoint.RuleRefreshEndpoint;
 import com.rsoft.ruleengine.endpoint.RuleSceneRefreshEndpoint;
-import com.rsoft.ruleengine.impl.NullRuleSetSource;
+import com.rsoft.ruleengine.impl.NullRuleSetProvider;
 import com.rsoft.ruleengine.impl.drools.DroolsFileSystemRuleLoader;
 import com.rsoft.ruleengine.impl.drools.DroolsRuleExecutor;
 import com.rsoft.ruleengine.impl.drools.KieSessionHolder;
@@ -32,8 +32,8 @@ public class RuleEngineAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    RuleSetSource ruleSetService() {
-        return new NullRuleSetSource();
+    RuleSetProvider ruleSetService() {
+        return new NullRuleSetProvider();
     }
 
     @Configuration
