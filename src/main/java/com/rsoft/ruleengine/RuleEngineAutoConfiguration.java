@@ -4,7 +4,7 @@ import com.rsoft.ruleengine.endpoint.RuleRefreshEndpoint;
 import com.rsoft.ruleengine.endpoint.RuleSceneRefreshEndpoint;
 import com.rsoft.ruleengine.impl.NullRuleSetProvider;
 import com.rsoft.ruleengine.impl.drools.DroolsFileSystemRuleLoader;
-import com.rsoft.ruleengine.impl.drools.DroolsRuleExecutor;
+import com.rsoft.ruleengine.impl.drools.DroolsRuleRunner;
 import com.rsoft.ruleengine.impl.drools.KieSessionHolder;
 
 import org.kie.api.KieServices;
@@ -47,8 +47,8 @@ public class RuleEngineAutoConfiguration {
         }
 
         @Bean
-        RuleExecutor ruleExecutor() {
-            return new DroolsRuleExecutor();
+        RuleRunner ruleRunner() {
+            return new DroolsRuleRunner();
         }
 
         @Bean

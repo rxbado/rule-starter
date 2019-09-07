@@ -1,6 +1,6 @@
 package com.rsoft.ruleengine.impl.drools;
 
-import com.rsoft.ruleengine.RuleExecutor;
+import com.rsoft.ruleengine.RuleRunner;
 
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @param <T>
  *            事实数据.
  */
-public class DroolsRuleExecutor<T extends Serializable> implements RuleExecutor<T> {
+public class DroolsRuleRunner<T extends Serializable> implements RuleRunner<T> {
     @Autowired
     KieSessionHolder kieSessionHolder;
 

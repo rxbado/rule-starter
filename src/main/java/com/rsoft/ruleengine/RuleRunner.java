@@ -11,6 +11,6 @@ import java.io.Serializable;
  *            rule fact.
  */
 @FunctionalInterface
-public interface RuleExecutor<T extends Serializable> {
+public interface RuleRunner<T extends Serializable> {
     int execute(String scene, T fact);
 }
