@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 规则加载器.
+ * 规则装载器.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 public interface RuleLoader {
-    public List<RuleInfo> reloadScene(String scene);
+    public List<Rule> reloadScene(String scene);
 
-    public Map<String, List<RuleInfo>> reload();
+    public Map<String, List<Rule>> reload();
 }

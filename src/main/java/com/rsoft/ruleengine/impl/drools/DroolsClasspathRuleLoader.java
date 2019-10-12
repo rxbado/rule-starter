@@ -1,6 +1,6 @@
 package com.rsoft.ruleengine.impl.drools;
 
-import com.rsoft.ruleengine.RuleInfo;
+import com.rsoft.ruleengine.Rule;
 import com.rsoft.ruleengine.impl.AbstractRuleLoader;
 
 import org.kie.api.KieServices;
@@ -11,13 +11,13 @@ import java.util.List;
 /**
  * 基于类路径的规则加载器.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 public class DroolsClasspathRuleLoader extends AbstractRuleLoader {
 
     @Override
-    public void reload(String scene, List<RuleInfo> rules) {
+    public void reload(String scene, List<Rule> rules) {
         // TODO something
     }
 

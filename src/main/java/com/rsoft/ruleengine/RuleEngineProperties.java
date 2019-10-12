@@ -5,21 +5,19 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * 规则引擎配置.
  * 
- * @author rsoft
+ * @author bado
  */
-@ConfigurationProperties("ruleengine")
+@ConfigurationProperties("re")
 public class RuleEngineProperties {
     private Boolean enabled = true;
-
     private String namespace = "default";
-
-    private RuleCache cache;
+    private RuleCache caches;
 
     private class RuleCache {
-        private String mode = "local";// local,redis
-        private String refreshEndpoint;
-    }
+        public static final String RULE_CACHE_LOCAL = "local";
+        public static final String RULE_CACHE_REDIS = "redis";
 
-    private String endpointsWebExposureInclude;
+        private String mode = RULE_CACHE_LOCAL;
+    }
 
 }

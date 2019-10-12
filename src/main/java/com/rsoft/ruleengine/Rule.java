@@ -8,12 +8,12 @@ import java.util.Date;
 /**
  * 规则信息.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 @Data
 @ToString
-public class RuleInfo {
+public class Rule {
     /**
      * 规则场景.
      */
@@ -22,6 +22,10 @@ public class RuleInfo {
      * 规则key.
      */
     private String rulekey;
+    /**
+     * 规则类型(drl/dsl).
+     */
+    private String ruleType;
     /**
      * 规则内容(对应规则文件,例如*.drl文件内容).
      */

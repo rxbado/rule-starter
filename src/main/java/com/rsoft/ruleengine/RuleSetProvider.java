@@ -6,11 +6,12 @@ import java.util.Map;
 /**
  * RuleSet Provider.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 public interface RuleSetProvider {
-    public List<RuleInfo> getRuleSetByScene(String scene);
+    public Map<String, List<Rule>> getRuleSet();
 
-    public Map<String, List<RuleInfo>> getRuleSetAsMap();
+    public List<Rule> getRuleSetByScene(String scene);
+
 }

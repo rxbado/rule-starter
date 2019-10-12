@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 获取Drools的会话工具.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 public class KieSessionHolder {

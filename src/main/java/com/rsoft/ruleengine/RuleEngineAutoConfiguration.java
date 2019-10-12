@@ -1,8 +1,8 @@
 package com.rsoft.ruleengine;
 
-import com.rsoft.ruleengine.endpoint.RuleRefreshEndpoint;
-import com.rsoft.ruleengine.endpoint.RuleSceneRefreshEndpoint;
+import com.rsoft.ruleengine.endpoint.RuleEngineEndpoint;
 import com.rsoft.ruleengine.impl.NullRuleSetProvider;
+import com.rsoft.ruleengine.impl.drools.DroolsClasspathRuleLoader;
 import com.rsoft.ruleengine.impl.drools.DroolsFileSystemRuleLoader;
 import com.rsoft.ruleengine.impl.drools.DroolsRuleRunner;
 import com.rsoft.ruleengine.impl.drools.KieSessionHolder;
@@ -10,6 +10,7 @@ import com.rsoft.ruleengine.impl.drools.KieSessionHolder;
 import org.kie.api.KieServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.endpoint.condition.ConditionalOnEnabledEndpoint;
+import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -20,11 +21,10 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 规则引擎自动配置.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 @Configuration
-@ConditionalOnClass(DroolsFileSystemRuleLoader.class)
 @EnableConfigurationProperties(RuleEngineProperties.class)
 public class RuleEngineAutoConfiguration {
     @Autowired
@@ -32,16 +32,16 @@ public class RuleEngineAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    RuleSetProvider ruleSetService() {
+    RuleSetProvider ruleSetProvider() {
         return new NullRuleSetProvider();
     }
 
     @Configuration
-    @ConditionalOnClass(KieServices.class)
+    @ConditionalOnClass({ KieServices.class, DroolsFileSystemRuleLoader.class, DroolsClasspathRuleLoader.class })
     protected static class DroolsRuleConfiguration {
         @Bean
         @ConditionalOnMissingBean
-        @ConditionalOnProperty(prefix = "ruleengine", value = "enabled", havingValue = "true")
+        @ConditionalOnProperty(prefix = "re", value = "enabled", havingValue = "true")
         DroolsFileSystemRuleLoader droolsRuleLoader() {
             return new DroolsFileSystemRuleLoader();
         }
@@ -58,19 +58,13 @@ public class RuleEngineAutoConfiguration {
     }
 
     @Configuration
-    static class RuleEngineEndpointConfiguration {
+    @ConditionalOnClass(Health.class)
+    protected static class RuleEngineEndpointConfiguration {
         @Bean
         @ConditionalOnMissingBean
         @ConditionalOnEnabledEndpoint
-        public RuleRefreshEndpoint ruleRefreshEndpoint() {
-            return new RuleRefreshEndpoint();
-        }
-
-        @Bean
-        @ConditionalOnMissingBean
-        @ConditionalOnEnabledEndpoint
-        public RuleSceneRefreshEndpoint ruleSceneRefreshEndpoint() {
-            return new RuleSceneRefreshEndpoint();
+        public RuleEngineEndpoint ruleRefreshEndpoint(RuleLoader ruleLoader) {
+            return new RuleEngineEndpoint(ruleLoader);
         }
     }
 }

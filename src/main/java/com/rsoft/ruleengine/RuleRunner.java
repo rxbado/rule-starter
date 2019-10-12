@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 规则执行器.
  * 
- * @author rsoft
+ * @author bado
  *
  * @param <T>
  *            rule fact.

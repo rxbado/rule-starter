@@ -1,6 +1,6 @@
 package com.rsoft.ruleengine.impl;
 
-import com.rsoft.ruleengine.RuleInfo;
+import com.rsoft.ruleengine.Rule;
 import com.rsoft.ruleengine.RuleLoader;
 import com.rsoft.ruleengine.RuleSetProvider;
 
@@ -13,29 +13,33 @@ import java.util.Map;
 /**
  * 规则加载器模板.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 public abstract class AbstractRuleLoader implements RuleLoader, CommandLineRunner {
     @Autowired
-    private RuleSetProvider ruleSetService;
+    private RuleSetProvider provider;
 
     @Override
     public void run(String... args) throws Exception {
         reload();
     }
 
-    public abstract void reload(String scene, List<RuleInfo> rules);
+    public abstract void reload(String scene, List<Rule> rules);
 
     /**
      * 刷新所有规则.
      */
-    public Map<String, List<RuleInfo>> reload() {
-        Map<String, List<RuleInfo>> rules = ruleSetService.getRuleSetAsMap();
-        for (Map.Entry<String, List<RuleInfo>> entry : rules.entrySet()) {
-            String scene = entry.getKey();
-            reload(scene, entry.getValue());
-        }
+    public Map<String, List<Rule>> reload() {
+        Map<String, List<Rule>> rules = provider.getRuleSet();
+        rules.entrySet().stream().forEach((rule) -> {
+            reload(rule.getKey(), rule.getValue());
+        });
+
+        // for (Map.Entry<String, List<Rule>> entry : rules.entrySet()) {
+        // String scene = entry.getKey();
+        // reload(scene, entry.getValue());
+        // }
 
         return rules;
     }
@@ -43,8 +47,8 @@ public abstract class AbstractRuleLoader implements RuleLoader, CommandLineRunne
     /**
      * 刷新特定场景规则.
      */
-    public List<RuleInfo> reloadScene(String scene) {
-        List<RuleInfo> ruleInfos = ruleSetService.getRuleSetByScene(scene);
+    public List<Rule> reloadScene(String scene) {
+        List<Rule> ruleInfos = provider.getRuleSetByScene(scene);
         reload(scene, ruleInfos);
         System.out.println("reload success");
 

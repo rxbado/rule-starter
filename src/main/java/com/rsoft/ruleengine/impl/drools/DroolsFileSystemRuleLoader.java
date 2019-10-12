@@ -1,6 +1,6 @@
 package com.rsoft.ruleengine.impl.drools;
 
-import com.rsoft.ruleengine.RuleInfo;
+import com.rsoft.ruleengine.Rule;
 import com.rsoft.ruleengine.impl.AbstractRuleLoader;
 
 import org.kie.api.KieServices;
@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * 基于文件系统规则加载器.
  * 
- * @author rsoft
+ * @author bado
  *
  */
 public class DroolsFileSystemRuleLoader extends AbstractRuleLoader {
@@ -40,7 +40,7 @@ public class DroolsFileSystemRuleLoader extends AbstractRuleLoader {
     }
 
     @Override
-    public void reload(String scene, List<RuleInfo> rules) {
+    public void reload(String scene, List<Rule> rules) {
         KieServices kieServices = KieServices.Factory.get();
         KieModuleModel kmm = kieServices.newKieModuleModel();
         KieBaseModel kbm = kmm.newKieBaseModel(String.format(KBASE_PREFIX_FORMAT, scene));
@@ -49,7 +49,7 @@ public class DroolsFileSystemRuleLoader extends AbstractRuleLoader {
         kbm.newKieSessionModel(String.format(KSESSION_PREFIX_FORMAT, scene));
 
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-        for (RuleInfo ruleInfo : rules) {
+        for (Rule ruleInfo : rules) {
             String fullPath = MessageFormat.format(DROOLS_DRL_FILEPATH, scene, ruleInfo.getRulekey());
             kieFileSystem.write(fullPath, ruleInfo.getContent());
         }
