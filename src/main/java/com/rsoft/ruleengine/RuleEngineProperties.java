@@ -18,6 +18,38 @@ public class RuleEngineProperties {
         public static final String RULE_CACHE_REDIS = "redis";
 
         private String mode = RULE_CACHE_LOCAL;
+
+        public String getMode() {
+            return mode;
+        }
+
+        public void setMode(String mode) {
+            this.mode = mode;
+        }
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+
+    public RuleCache getCaches() {
+        return caches;
+    }
+
+    public void setCaches(RuleCache caches) {
+        this.caches = caches;
     }
 
 }

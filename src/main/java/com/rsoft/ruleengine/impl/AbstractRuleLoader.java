@@ -1,6 +1,7 @@
 package com.rsoft.ruleengine.impl;
 
 import com.rsoft.ruleengine.Rule;
+import com.rsoft.ruleengine.RuleEngineProperties;
 import com.rsoft.ruleengine.RuleLoader;
 import com.rsoft.ruleengine.RuleSetProvider;
 
@@ -19,6 +20,8 @@ import java.util.Map;
 public abstract class AbstractRuleLoader implements RuleLoader, CommandLineRunner {
     @Autowired
     private RuleSetProvider provider;
+    @Autowired
+    private RuleEngineProperties properties;
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,11 +39,6 @@ public abstract class AbstractRuleLoader implements RuleLoader, CommandLineRunne
             reload(rule.getKey(), rule.getValue());
         });
 
-        // for (Map.Entry<String, List<Rule>> entry : rules.entrySet()) {
-        // String scene = entry.getKey();
-        // reload(scene, entry.getValue());
-        // }
-
         return rules;
     }
 
@@ -55,4 +53,7 @@ public abstract class AbstractRuleLoader implements RuleLoader, CommandLineRunne
         return ruleInfos;
     }
 
+    protected String getNamespace() {
+        return properties.getNamespace();
+    }
 }

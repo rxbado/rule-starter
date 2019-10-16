@@ -12,7 +12,7 @@ import java.util.List;
  * 基于类路径的规则加载器.
  * 
  * @author bado
- *
+ * @TODO 待实现
  */
 public class DroolsClasspathRuleLoader extends AbstractRuleLoader {
 
