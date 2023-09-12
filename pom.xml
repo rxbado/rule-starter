@@ -6,7 +6,7 @@
 	<version>0.1.0</version>
 
 	<properties>
-		<drools.version>6.5.0.Final</drools.version>
+		<drools.version>7.69.0.Final</drools.version>
 		<java.version>1.8</java.version>
 	</properties>
 
